@@ -1,0 +1,4 @@
+{
+    "mongoURI":
+      "mongodb+srv://mk4555:alstjr@cluster0.hphma.mongodb.net/todo?retryWrites=true&w=majority"
+  }
