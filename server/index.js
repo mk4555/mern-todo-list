@@ -8,7 +8,7 @@ import listRoutes from "./routes/List.js";
 const app = express();
 connectDB();
 const port = 8000;
-console.log(process.env);
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(bodyParser.json());
