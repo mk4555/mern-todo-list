@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 const listSchema = new mongoose.Schema(
   {
     title: {
