@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-
-export const ListSchema = new mongoose.Schema(
+const listSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -15,3 +14,7 @@ export const ListSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+const List = mongoose.model("List", listSchema);
+
+export default List;
