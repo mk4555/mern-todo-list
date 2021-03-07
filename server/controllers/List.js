@@ -19,3 +19,13 @@ export const createList = async (req, res) => {
     res.status(409).json({ message: error.message });
   }
 };
+
+export const updateList = async (req, res) => {
+  try {
+    const list = await List.findByIdAndUpdate(req.params.id, req.body);
+    list.save();
+    res.status(200).json(list);
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};

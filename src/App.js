@@ -4,15 +4,18 @@ import axios from "axios";
 export const App = () => {
   const [lists, setLists] = useState([]);
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/lists/")
-      .then((res) => setLists(res.data))
-      .catch((err) => console.log(err));
-  });
+    const getLists = async () => {
+      axios
+        .get("http://localhost:8000/lists/")
+        .then((res) => setLists(res.data))
+        .catch((err) => console.log(err));
+    };
+    getLists();
+  }, []);
   return (
     <div>
       {lists.map((list) => (
-        <List data={list} />
+        <List data={list} key={list._id} />
       ))}
     </div>
   );

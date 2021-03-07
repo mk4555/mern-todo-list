@@ -1,4 +1,8 @@
 import React from "react";
 export const List = (props) => {
-  return <div>{props.data.title}</div>;
+  return (
+    <div>
+      <h1>{props.data.title}</h1>
+    </div>
+  );
 };
