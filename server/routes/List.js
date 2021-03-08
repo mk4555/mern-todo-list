@@ -4,5 +4,5 @@ const router = express.Router();
 
 router.get("/", getLists);
 router.post("/create", createList);
-router.post("/update/:id", updateList);
+router.put("/update/:id", updateList);
 export default router;
