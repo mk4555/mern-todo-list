@@ -21,7 +21,6 @@ export const createList = (req, res) => {
 };
 
 export const updateList = (req, res) => {
-  console.log(req.body);
   List.findByIdAndUpdate(
     req.params.id,
     req.body,
