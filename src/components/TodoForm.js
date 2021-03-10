@@ -3,10 +3,13 @@ import TextField from "@material-ui/core/TextField";
 import axios from "axios";
 export const TodoForm = () => {
   const [title, setTitle] = useState("");
-  const [items, setItems] = useState([""]);
-  const handleSubmit = () => {
+  const [items, setItems] = useState([{ body: "", completed: false }]);
+  const handleSubmit = (e) => {
     axios
-      .post("http://localhost:8000/list/create", { title: title, items: items })
+      .post("http://localhost:8000/lists/create", {
+        title: title,
+        items: items,
+      })
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
   };
@@ -17,7 +20,7 @@ export const TodoForm = () => {
 
   const handleItemChange = (e, i) => {
     let arr = [...items];
-    arr[i] = e.target.value;
+    arr[i] = { ...arr[i], body: e.target.value };
     setItems(arr);
   };
 
@@ -27,7 +30,7 @@ export const TodoForm = () => {
         <TextField
           id="item"
           label="Item"
-          value={item}
+          value={item.body}
           key={`item_${i}`}
           onChange={(event) => handleItemChange(event, i)}
         />
@@ -37,11 +40,11 @@ export const TodoForm = () => {
 
   const addItemInput = (e) => {
     e.preventDefault();
-    setItems([...items, ""]);
+    setItems([...items, { body: "", completed: false }]);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <TextField
         id="title"
         label="Title"
@@ -49,7 +52,10 @@ export const TodoForm = () => {
         onChange={handleChange}
       />
       {itemFields()}
-      <button onClick={(e) => addItemInput(e)}> + </button>
+      <button onClick={(event) => addItemInput(event)}> + </button>
+      <button type="submit" onClick={(event) => handleSubmit(event)}>
+        ADD
+      </button>
     </form>
   );
 };
